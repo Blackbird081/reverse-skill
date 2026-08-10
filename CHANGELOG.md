@@ -8,9 +8,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ## [1.0.1] — 2026-08-08
-
 ### Added
-
 - **Routing single source of truth** — `skills/config/routing.json` (R0–R39 keyword rules with `must` / `mustAll` / `exclude` semantics). `master-route.ps1` now reads this file; hardcoded routing tables removed from scripts. Routing knowledge lives in one place.
 - **Routing regression benchmark** — `skills/tests/routing-benchmark.json` (163 bilingual cases, 40 quick) + `skills/scripts/test-routing.ps1` runner. Any routing change must keep the benchmark green.
 - **Routing keyword coverage expansion** (benchmark-driven): burp suite family, pcap/wireshark, root-detection/certificate-pinning, buffer overflow, `.so`/native/JNI, go binaries (中文), js-encrypt, webshell, privilege escalation, S3/object storage, memory dump, incident response, Bluetooth/BLE, USB, Unity/game reverse, security assessment, and more.
@@ -21,22 +19,21 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - **Example case** — `examples/ctf-demo/` full workflow walkthrough (route → scope gate → timeline → evidence → report).
 - **frontmatter completion** — `dsl-vm-reverse/SKILL.md` gained name/description frontmatter (was the only module missing it).
 - **README refresh** — updated the multilingual project overview, release badge, current capabilities, and sponsor showcase layout.
+- `case-review/`: read-only Evidence Graph Review with scope, timeline, work item, Finding, Path, and optional SHA-256 fixity checks
+- Domain skills R21–R27, R29–R30: `protocol-reverse`, `ghidra-reverse`, `cloud-k8s`, `windows-ad`, `digital-forensics`, `code-audit`, `threat-hunting`, `wifi-wireless`, `browser-extension-reverse`
+- High-quality skills R28, R31–R38: `ot-ics`, `macos-reverse`, `thick-client`, `go-rust-reverse`, `hardware-security`, `database-security`, `email-security`, `identity-federation`, `radio-sdr`
+- Wired into `MASTER-ROUTING.md`, `master-route.ps1`, routing tables, domain map, role-map, coherence tests
+
+### Removed
+- `game-reverse/` (not a product focus; Unity/IL2CPP remains via `reverse-engineering` + seed-014)
 
 ### Fixed
-
 - **Upstream mixed-EOL files** — 3 markdown files committed with CRLF while `.gitattributes` declares `*.md eol=lf`; normalized to LF so `git status` stays clean on fresh clones.
-
-### Security
-
-- Core scripts do not write client-global instruction files; client-specific integration remains outside the routing core.
-
-### Fixed
-
 - Routing: sigma vs malware, LLM 越狱 vs iOS 越狱, 完整渗透/打到域控 vs AD 域控, forensics vs OT ics; master-route.ps1 rewritten UTF-8 BOM for PS 5.1 CJK
 - Linux/macOS bootstrap: register PentestSwarm MCP with a verified executable path after Go install or when already installed
 
 ### Security
-
+- Core scripts do not write client-global instruction files; client-specific integration remains outside the routing core.
 - Added `docs/PACKAGE-SECURITY-AUDIT.md`: static audit of package executables (no backdoor / no auto DB wipe found)
 - Pin supply-chain floating tags: jshook `@0.3.4`, pentestswarm `v0.1.0`
 - Bootstrap integrity: GitHub zip/jar downloads verify `assetSha256` (manifest) or GitHub API `digest`; mismatch deletes file and fails
@@ -57,18 +54,6 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Reject unsupported network profiles during case initialization so invalid scopes are never emitted as ready
 - Generate `skills/INDEX.md` from tracked skills only, excluding ignored local modules so clean-clone CI stays reproducible
 - Fail routing coherence when a configured skill is missing or only exists as an untracked local file
-
-
-### Added
-
-- `case-review/`: read-only Evidence Graph Review with scope, timeline, work item, Finding, Path, and optional SHA-256 fixity checks
-- Domain skills R21–R27, R29–R30: `protocol-reverse`, `ghidra-reverse`, `cloud-k8s`, `windows-ad`, `digital-forensics`, `code-audit`, `threat-hunting`, `wifi-wireless`, `browser-extension-reverse`
-- High-quality skills R28, R31–R38: `ot-ics`, `macos-reverse`, `thick-client`, `go-rust-reverse`, `hardware-security`, `database-security`, `email-security`, `identity-federation`, `radio-sdr`
-- Wired into `MASTER-ROUTING.md`, `master-route.ps1`, routing tables, domain map, role-map, coherence tests
-
-### Removed
-
-- `game-reverse/` (not a product focus; Unity/IL2CPP remains via `reverse-engineering` + seed-014)
 
 ## [1.0.0] — 2026-07-18
 
