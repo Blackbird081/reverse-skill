@@ -12,7 +12,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 ### Added
 
 - **Routing single source of truth** — `skills/config/routing.json` (R0–R39 keyword rules with `must` / `mustAll` / `exclude` semantics). `master-route.ps1` now reads this file; hardcoded routing tables removed from scripts. Routing knowledge lives in one place.
-- **Routing regression benchmark** — `skills/tests/routing-benchmark.json` (162 bilingual cases, 40 quick) + `skills/scripts/test-routing.ps1` runner. Any routing change must keep the benchmark green.
+- **Routing regression benchmark** — `skills/tests/routing-benchmark.json` (163 bilingual cases, 40 quick) + `skills/scripts/test-routing.ps1` runner. Any routing change must keep the benchmark green.
 - **Routing keyword coverage expansion** (benchmark-driven): burp suite family, pcap/wireshark, root-detection/certificate-pinning, buffer overflow, `.so`/native/JNI, go binaries (中文), js-encrypt, webshell, privilege escalation, S3/object storage, memory dump, incident response, Bluetooth/BLE, USB, Unity/game reverse, security assessment, and more.
 - **Supply-chain pin gate** — `verify-routing-coherence.ps1` now fails on any auto-install capability lacking `pinnedVersion` / `pinnedCommit` / `pinPolicy` / asset hash. Pinned: frida-tools 14.10.4, pwntools 4.15.0, agent-browser 0.31.1, ida-pro-mcp @commit, SecLists/ProxyCat @commit, nuclei v3.9.0; winget sources annotated with `winget-latest` policy.
 - **Client-neutral integration contract** — routing, tests, manifests, and case workflows remain independent of Claude Code, Codex, Cursor, OpenCode, or any other client; client adapters are optional and must not define repository identity.
