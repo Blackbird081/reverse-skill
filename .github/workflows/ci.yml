@@ -158,6 +158,15 @@ jobs:
         shell: pwsh
         run: ./skills/scripts/scan-leaks.ps1 -Path skills/field-journal
 
+  case-contract:
+    name: case contract test (ctf-demo)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Review examples/ctf-demo under strict contract
+        shell: bash
+        run: python3 skills/case-review/scripts/review_case.py examples/ctf-demo --verify-hashes --strict
+
   version-check:
     name: version consistency
     runs-on: ubuntu-latest
