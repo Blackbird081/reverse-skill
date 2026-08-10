@@ -49,6 +49,10 @@ jobs:
           Get-Content skills/tests/routing-benchmark.json -Raw -Encoding UTF8 | ConvertFrom-Json | Out-Null
           Write-Host "All JSON valid"
 
+      - name: Doc fact tables vs manifest (verify-doc-facts)
+        shell: pwsh
+        run: ./skills/scripts/verify-doc-facts.ps1
+
   sh-syntax:
     name: shell script syntax check
     runs-on: ubuntu-latest
