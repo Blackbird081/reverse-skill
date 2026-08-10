@@ -149,6 +149,15 @@ jobs:
           }
           if ($failed -gt 0) { exit 1 }
 
+  leak-scan:
+    name: field-journal leak scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Scan field-journal for un-anonymized secrets
+        shell: pwsh
+        run: ./skills/scripts/scan-leaks.ps1 -Path skills/field-journal
+
   version-check:
     name: version consistency
     runs-on: ubuntu-latest
