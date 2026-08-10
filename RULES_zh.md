@@ -277,7 +277,7 @@
 | anything-analyzer | 23816 | 浏览器自动化 + HTTP 捕获 | `pnpm dev`（项目目录） |
 | jshookmcp | — | JS Hook/CDP/Network/AST | `npx -y @jshookmcp/jshook@0.3.4`（stdio） |
 | ghidra | 8765 | Ghidra 免费反编译 | Ghidra GUI 启动后自动监听 |
-| burpsuite | 9876 | BurpSuite 63 工具全控制（Proxy/Intruder/Repeater/Scanner/Collaborator） | Burp 启动后扩展自动加载 |
+| burpsuite | 9876 | BurpSuite 78 工具全控制（Proxy/Intruder/Repeater/Scanner/Collaborator） | Burp 启动后扩展自动加载 |
 
 使用 MCP 工具前：
 1. 先确认 `tool-index.md` 中该服务的 `MCP 已注册` 状态
@@ -463,7 +463,7 @@ Kali Linux（Bash，含 Kali 原生工具链）：
 bash <本包根目录>/kali/scripts/bootstrap-reverse.sh 工具名 --start-services
 ```
 
-支持的能力名（与 `skills/scripts/bootstrap-manifest.json` 保持一致，共 21 项）：jadx、apktool、frida、frida-ps、idalib-mcp、jshookmcp、anything-analyzer、idapro、r2、rabin2、adb、agent-browser、ghidra-mcp、seclists、proxycat、burpsuite-mcp、nmap、pentestswarm、binwalk、yara、pwntools
+支持的能力名（与 `skills/scripts/bootstrap-manifest.json` 保持一致，共 24 项）：jadx、apktool、jeb-pro、frida、frida-ps、idalib-mcp、reqable-mcp、jshookmcp、anything-analyzer、idapro、r2、rabin2、adb、agent-browser、ghidra-mcp、seclists、proxycat、burpsuite-mcp、nmap、pentestswarm、binwalk、yara、pwntools、bkcrack
 
 ## 刷新工具索引
 
