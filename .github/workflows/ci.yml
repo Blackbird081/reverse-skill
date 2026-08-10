@@ -127,6 +127,28 @@ jobs:
             exit 1
           fi
 
+      - name: PowerShell syntax check (PSParser, all tracked .ps1)
+        shell: pwsh
+        run: |
+          $files = git ls-files '*.ps1'
+          if (-not $files) { Write-Host 'No .ps1 files tracked'; exit 0 }
+          $failed = 0
+          foreach ($f in $files) {
+            $tokens = $null
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path $f), [ref]$tokens, [ref]$errors) | Out-Null
+            if ($errors -and $errors.Count -gt 0) {
+              $failed++
+              Write-Host "::error file=$f::$($errors.Count) parse error(s)"
+              foreach ($e in $errors) {
+                Write-Host ("  L{0}:{1} {2}" -f $e.Extent.StartLineNumber, $e.Extent.StartColumnNumber, $e.Message)
+              }
+            } else {
+              Write-Host "syntax OK: $f"
+            }
+          }
+          if ($failed -gt 0) { exit 1 }
+
   version-check:
     name: version consistency
     runs-on: ubuntu-latest
